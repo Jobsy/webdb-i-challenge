@@ -41,5 +41,17 @@ router.post("/", (req, res) => {
     })
 })
 
+router.put("/:id", (req, res) => {
+  dB("accounts")
+    .where({id: req.params.id})
+    .update(req.body)
+    .then((accounts) => {
+      res.status(200).json(accounts)
+    })
+    .catch((err) => {
+      res.status(500).json("errMessage: " + err)
+    })
+})
+
 
 module.exports = router;
